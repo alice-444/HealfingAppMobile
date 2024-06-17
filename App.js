@@ -22,16 +22,15 @@ import ExerciceGo from "./screens/exercices/_id/exercice_go.jsx";
 import PrivacyPolicy from "./screens/settings/privacyPolicy.jsx";
 import ArtTherapy from "./screens/exercices/artTherapyScreen.jsx";
 import Meditation from "./screens/exercices/meditationScreen.jsx";
-import CategoriesExercices from "./screens/exercices/categoriesExercices.jsx";
 import Mindfulness from "./screens/exercices/mindfulnessScreen.jsx";
 import ActivityHistory from "./screens/settings/actvityHistory.jsx";
 import PersonalData from "./screens/settings/personalDataScreen.jsx";
-import DeepBreathing from "./screens/exercices/deepBreathingScreen.jsx";
 import PasswordSecurity from "./screens/settings/passwordSecurity.jsx";
+import DeepBreathing from "./screens/exercices/deepBreathingScreen.jsx";
+import CategoriesExercices from "./screens/exercices/categoriesExercices.jsx";
 import MuscleRelaxation from "./screens/exercices/muscleRelaxationScreen.jsx";
 import SensoryAnchoring from "./screens/exercices/sensoryAnchoringScreen.jsx";
 import AuditoryRelaxation from "./screens/exercices/auditoryRelaxationScreen.jsx";
-import SignUpInfosScreen1 from "./screens/auth/signUpInfosScreen1.jsx";
 
 const Stack = createStackNavigator();
 
@@ -39,7 +38,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="SignUp">
+        <Stack.Navigator initialRouteName="SignUpInfos">
           <Stack.Screen
             name="SignUp"
             component={SignUp}
@@ -48,11 +47,6 @@ export default function App() {
           <Stack.Screen
             name="SignUpInfos"
             component={SignUpInfos}
-            options={{ title: "Finalise ton inscription" }}
-          />
-          <Stack.Screen
-            name="SignUpInfosScreen1"
-            component={SignUpInfosScreen1}
             options={{ title: "Finalise ton inscription" }}
           />
           <Stack.Screen
