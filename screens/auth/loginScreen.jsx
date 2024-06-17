@@ -6,6 +6,7 @@ import {
   Image,
   StyleSheet,
 } from "react-native";
+import { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 
 const Login = ({ navigation }) => {
