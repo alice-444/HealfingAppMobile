@@ -31,7 +31,7 @@ const SignUpInfosScreen = ({ route }) => {
       return;
     }
 
-    fetch(`https://localhost:3302/users/create`, {
+    fetch(`http://localhost:3002/users`, {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",
@@ -60,7 +60,7 @@ const SignUpInfosScreen = ({ route }) => {
       })
       .then((data) => {
         console.log("Utilisateur enregistré avec succès !", data);
-        navigation.navigate("Home");
+        navigation.navigate("Login");
       })
       .catch((error) => {
         console.error(

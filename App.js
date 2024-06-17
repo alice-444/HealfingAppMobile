@@ -7,16 +7,16 @@ import News from "./screens/newsScreen.jsx";
 import Error404 from "./screens/error404.jsx";
 import Login from "./screens/auth/loginScreen.jsx";
 import Diary from "./screens/diary/diaryScreen.jsx";
-import SignUp from "./screens/auth/SignUpScreen.jsx";
+import SignUp from "./screens/auth/signUpScreen.jsx";
 import Contact from "./screens/contactScreen.jsx";
 import Profile from "./screens/profileScreen.jsx";
 import DailyMissions from "./screens/dailyMissions.jsx";
 import Chargement from "./screens/chargementScreen.jsx";
-import ReportBug from "./screens/settings/ReportBug.jsx";
+import ReportBug from "./screens/settings/reportBug.jsx";
 import AddDataDiary from "./screens/diary/addDataDiary.jsx";
 import Settings from "./screens/settings/settingsScreen.jsx";
 import SignUpInfos from "./screens/auth/signUpInfosScreen.jsx";
-import Notification from "./screens/settings/Notification.jsx";
+import Notification from "./screens/settings/notification.jsx";
 import Exercice from "./screens/exercices/_id/exercice_id.jsx";
 import ExerciceGo from "./screens/exercices/_id/exercice_go.jsx";
 import PrivacyPolicy from "./screens/settings/privacyPolicy.jsx";
@@ -39,7 +39,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="SignUpInfosScreen1">
+        <Stack.Navigator initialRouteName="SignUpScreen">
           <Stack.Screen
             name="SignUp"
             component={SignUp}
