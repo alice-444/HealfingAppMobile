@@ -1,19 +1,13 @@
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  Image,
-  StyleSheet,
-} from "react-native";
-import { useState } from "react";
-import { Ionicons } from "@expo/vector-icons";
+import React, { useState } from 'react';
+import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet, Alert } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Login = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const authenticateUser = async () => {
+  const handleLogin = async () => {
     try {
       const response = await fetch('http://localhost:3002/users/login', {
         method: 'POST',
@@ -25,13 +19,16 @@ const Login = ({ navigation }) => {
 
       const data = await response.json();
 
-      if (data.success) {
-        navigation.navigate('Home');
+      if (response.ok) {
+        console.log('Login Successful', data);
+        await AsyncStorage.setItem('token', data.token);
+
+        navigation.navigate('Home'); // Replace 'Home' with your desired screen
       } else {
-        Alert.alert('Erreur', 'Email ou mot de passe incorrect');
+        Alert.alert('Login Failed', data.message);
       }
     } catch (error) {
-      Alert.alert('Erreur', 'Une erreur est survenue lors de la connexion');
+      Alert.alert('Login Failed', 'An error occurred');
     }
   };
 
@@ -41,36 +38,30 @@ const Login = ({ navigation }) => {
         <Image source={require("../../assets/logo.png")} style={styles.logo} />
 
         <View style={styles.inputContainer}>
-          <Ionicons
-            name="mail-outline"
-            size={30}
-            color="#fff"
-            style={styles.icon}
-          />
+          <Ionicons name="mail-outline" size={30} color="#fff" style={styles.icon} />
           <TextInput
             style={styles.input}
             placeholder="Email"
             placeholderTextColor="#fff"
             keyboardType="email-address"
+            value={email}
+            onChangeText={(text) => setEmail(text)}
           />
         </View>
 
         <View style={styles.inputContainer}>
-          <Ionicons
-            name="lock-closed-outline"
-            size={30}
-            color="#fff"
-            style={styles.icon}
-          />
+          <Ionicons name="lock-closed-outline" size={30} color="#fff" style={styles.icon} />
           <TextInput
             style={styles.input}
             placeholder="Mot de passe"
             placeholderTextColor="#fff"
-            keyboardType="email-address"
+            secureTextEntry
+            value={password}
+            onChangeText={(text) => setPassword(text)}
           />
         </View>
 
-        <TouchableOpacity style={styles.button} onPress={authenticateUser}>
+        <TouchableOpacity style={styles.button} onPress={handleLogin}>
           <Text style={styles.buttonText}>Connexion</Text>
         </TouchableOpacity>
 
@@ -79,9 +70,7 @@ const Login = ({ navigation }) => {
         </TouchableOpacity>
 
         <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
-          <Text style={styles.linkText}>
-            Pas encore de compte ? Rejoignez-vous
-          </Text>
+          <Text style={styles.linkText}>Pas encore de compte ? Rejoignez-vous</Text>
         </TouchableOpacity>
 
         <Text style={styles.socialText} onPress={() => navigation.navigate("Login")}>Ou connectez-vous :</Text>
@@ -147,7 +136,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
   },
-
   linkText: {
     color: "#fff",
     marginVertical: 10,
