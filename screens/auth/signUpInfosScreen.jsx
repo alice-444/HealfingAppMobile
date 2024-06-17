@@ -11,7 +11,6 @@ import { Picker } from "@react-native-picker/picker";
 import { useNavigation } from "@react-navigation/native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
-
 const SignUpInfosScreen = ({ route }) => {
   const navigation = useNavigation();
   const { email, password } = route.params;
@@ -24,7 +23,6 @@ const SignUpInfosScreen = ({ route }) => {
     setBirthdate(currentDate);
   };
 
-
   const createAccount = () => {
     if (!email || !username) {
       Alert.alert("Erreur", "Email et nom d'utilisateur sont requis.");
@@ -32,7 +30,7 @@ const SignUpInfosScreen = ({ route }) => {
     }
 
     fetch(`https://localhost:3302/users/create`, {
-      method: 'POST',
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
@@ -54,7 +52,7 @@ const SignUpInfosScreen = ({ route }) => {
           const err = await response.json();
           throw new Error(
             "Une erreur s'est produite lors de la création du compte: " +
-            (err.message || response.statusText)
+              (err.message || response.statusText)
           );
         }
       })
@@ -122,6 +120,12 @@ const SignUpInfosScreen = ({ route }) => {
       </View>
       <TouchableOpacity style={styles.button} onPress={createAccount}>
         <Text style={styles.buttonText}>Creer un Compte</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => navigation.navigate("Login")}
+        style={styles.button}
+      >
+        <Text style={styles.buttonText}>Se connecter à son compte</Text>
       </TouchableOpacity>
     </View>
   );
