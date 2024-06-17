@@ -7,6 +7,7 @@
     "ios": "expo start --ios"
   },
   "dependencies": {
+    "@expo/metro-runtime": "~3.2.1",
     "@react-native-picker/picker": "^2.7.7",
     "@react-navigation/native": "^6.1.17",
     "@react-navigation/stack": "^6.3.29",
@@ -16,15 +17,18 @@
     "expo-linear-gradient": "^13.0.2",
     "expo-status-bar": "^1.12.1",
     "nativewind": "^2.0.11",
-    "react": "18.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-native": "^0.74.2",
     "react-native-ionicons": "^4.6.5",
     "react-native-modal-datetime-picker": "^17.1.0",
     "react-native-toast-message": "^2.2.0",
-    "react-native-vector-icons": "^10.1.0"
+    "react-native-vector-icons": "^10.1.0",
+    "react-native-web": "~0.19.10"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0"
+    "@babel/core": "^7.20.0",
+    "tailwindcss": "^3.4.4"
   },
   "private": true
 }

@@ -9,6 +9,31 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 
 const Login = ({ navigation }) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const authenticateUser = async () => {
+    try {
+      const response = await fetch('http://localhost:3002/users/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        navigation.navigate('Home');
+      } else {
+        Alert.alert('Erreur', 'Email ou mot de passe incorrect');
+      }
+    } catch (error) {
+      Alert.alert('Erreur', 'Une erreur est survenue lors de la connexion');
+    }
+  };
+
   return (
     <View style={styles.background}>
       <View style={styles.container}>
@@ -44,7 +69,7 @@ const Login = ({ navigation }) => {
           />
         </View>
 
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={authenticateUser}>
           <Text style={styles.buttonText}>Connexion</Text>
         </TouchableOpacity>
 
@@ -58,7 +83,7 @@ const Login = ({ navigation }) => {
           </Text>
         </TouchableOpacity>
 
-        <Text style={styles.socialText}>Ou connectez-vous :</Text>
+        <Text style={styles.socialText} onPress={() => navigation.navigate("Login")}>Ou connectez-vous :</Text>
         <View style={styles.socialContainer}>
           <TouchableOpacity>
             <Ionicons name="logo-instagram" size={40} color="#f4fefe" />

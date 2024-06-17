@@ -39,7 +39,11 @@ export default function App() {
   return (
     <View style={styles.container}>
       <NavigationContainer>
+<<<<<<< HEAD
         <Stack.Navigator initialRouteName="SignUpInfos">
+=======
+        <Stack.Navigator initialRouteName="SignUpScreen">
+>>>>>>> ffe52d878efdb7cdcb71f79d2c6e0a1ba34fa1b0
           <Stack.Screen
             name="SignUp"
             component={SignUp}
