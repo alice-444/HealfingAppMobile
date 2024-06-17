@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   View,
   StyleSheet,
+  Platform,
 } from "react-native";
 import { useState } from "react";
 import { Picker } from "@react-native-picker/picker";
@@ -13,13 +14,15 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 
 const SignUpInfosScreen = ({ route }) => {
   const navigation = useNavigation();
-  const { email, password } = route.params;
+  const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [birthdate, setBirthdate] = useState(new Date());
   const [gender, setGender] = useState("");
+  const [showDatePicker, setShowDatePicker] = useState(false);
 
   const handleDateChange = (event, selectedDate) => {
-    const currentDate = selectedDate || new Date();
+    const currentDate = selectedDate || birthdate;
+    setShowDatePicker(Platform.OS === "ios");
     setBirthdate(currentDate);
   };
 
@@ -72,19 +75,16 @@ const SignUpInfosScreen = ({ route }) => {
   return (
     <View style={styles.background}>
       <View style={styles.container}>
-        <View>
-          <Text style={styles.titles}>Dernière étape</Text>
-          <Text style={styles.titles}>
-            Rempli le formulaire ci-dessous pour terminer ton inscription
-          </Text>
-        </View>
-        <View>
-          <Text style={styles.titles}>Renseigne ta date de naissance !</Text>
-          <View style={styles.inputContainer}>
-            <TouchableOpacity>
-              <Text>Date !</Text>
-            </TouchableOpacity>
-
+        <Text style={styles.title}>Dernière étape</Text>
+        <Text style={styles.subtitle}>
+          Rempli le formulaire ci-dessous pour terminer ton inscription
+        </Text>
+        <Text style={styles.label}>Renseigne ta date de naissance !</Text>
+        <View style={styles.inputContainer}>
+          <TouchableOpacity onPress={() => setShowDatePicker(true)}>
+            <Text style={styles.dateText}>{birthdate.toDateString()}</Text>
+          </TouchableOpacity>
+          {showDatePicker && (
             <DateTimePicker
               testID="dateTimePicker"
               mode="date"
@@ -92,41 +92,41 @@ const SignUpInfosScreen = ({ route }) => {
               display="spinner"
               value={birthdate}
               onChange={handleDateChange}
+              style={styles.datePicker}
             />
-          </View>
-          <Text style={styles.titles}>Quel est ton pseudo ?</Text>
-          <View style={styles.inputContainer}>
-            <TextInput
-              placeholderTextColor="#E6E0F0"
-              style={styles.input}
-              placeholder="Ton pseudo"
-              onChangeText={setUsername}
-              value={username}
-            />
-          </View>
-          <Text style={styles.titles}>Quel est ton genre ?</Text>
-          <View style={styles.inputContainer}>
-            <Picker
-              selectedValue={gender}
-              style={{ height: 50, width: 150, color: "#E6E0F0" }}
-              onValueChange={(itemValue) => setGender(itemValue)}
-            >
-              <Picker.Item label="Femme" value="femme" />
-              <Picker.Item label="Homme" value="homme" />
-              <Picker.Item label="Autre" value="autre" />
-            </Picker>
-          </View>
+          )}
         </View>
+        <Text style={styles.label}>Quel est ton pseudo ?</Text>
+        <View style={styles.inputContainer}>
+          <TextInput
+            placeholderTextColor="#E6E0F0"
+            style={styles.input}
+            placeholder="Ton pseudo"
+            onChangeText={setUsername}
+            value={username}
+          />
+        </View>
+        <Text style={styles.label}>Quel est ton genre ?</Text>
+        <View style={styles.inputContainer}>
+          <Picker
+            selectedValue={gender}
+            style={styles.picker}
+            onValueChange={(itemValue) => setGender(itemValue)}
+          >
+            <Picker.Item label="Femme" value="femme" />
+            <Picker.Item label="Homme" value="homme" />
+            <Picker.Item label="Autre" value="autre" />
+          </Picker>
+        </View>
+        <TouchableOpacity style={styles.button} onPress={createAccount}>
+          <Text style={styles.buttonText}>Créer un Compte</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+          <Text style={styles.linkText}>
+            Déjà un compte ? Connectez-vous
+          </Text>
+        </TouchableOpacity>
       </View>
-      <TouchableOpacity style={styles.button} onPress={createAccount}>
-        <Text style={styles.buttonText}>Creer un Compte</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => navigation.navigate("Login")}
-        style={styles.button}
-      >
-        <Text style={styles.buttonText}>Se connecter à son compte</Text>
-      </TouchableOpacity>
     </View>
   );
 };
@@ -136,21 +136,30 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#3F317E",
     justifyContent: "center",
+    paddingHorizontal: 20,
   },
-  titles: {
-    alignItems: "center",
-    marginBottom: 20,
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
     color: "#E6E0F0",
+    textAlign: "center",
+    marginBottom: 20,
+  },
+  subtitle: {
+    fontSize: 18,
+    color: "#E6E0F0",
+    textAlign: "center",
+    marginBottom: 20,
+  },
+  label: {
+    fontSize: 16,
+    color: "#E6E0F0",
+    marginBottom: 10,
   },
   container: {
-    flex: 1,
     alignItems: "center",
-    justifyContent: "center",
-    paddingHorizontal: 30,
   },
   inputContainer: {
-    flexDirection: "row",
-    alignItems: "center",
     width: "100%",
     backgroundColor: "rgba(255, 255, 255, 0.3)",
     borderRadius: 25,
@@ -158,9 +167,20 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   input: {
-    flex: 1,
     height: 50,
     color: "#E6E0F0",
+  },
+  picker: {
+    height: 50,
+    width: "100%",
+    color: "#E6E0F0",
+  },
+  dateText: {
+    color: "#E6E0F0",
+    paddingVertical: 15,
+  },
+  datePicker: {
+    width: "100%",
   },
   button: {
     width: "100%",
@@ -175,6 +195,11 @@ const styles = StyleSheet.create({
     color: "#120B2D",
     fontSize: 18,
     fontWeight: "bold",
+  },
+  linkText: {
+    color: "#E6E0F0",
+    textAlign: "center",
+    marginTop: 20,
   },
 });
 
