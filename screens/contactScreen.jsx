@@ -33,31 +33,50 @@ const Contact = ({ navigation }) => {
     </View>
   );
 
-  const renderEmergencyNumbers = () => {
-    const [emergencyNumbers, setEmergencyNumbers] = useState([]);
-
-    useEffect(() => {
-      fetch('http://localhost:3002/importantNumbers')
-        .then((response) => response.json())
-        .then((data) => setEmergencyNumbers(data))
-        .catch((error) => console.error('Erreur lors de la récupération des numéros d\'urgence:', error));
-    }, []);
-
-    return (
-      <View style={styles.contactList}>
-        {emergencyNumbers.map((number, index) => (
-          <TouchableOpacity key={index} style={styles.contactButton}>
-            <View style={styles.buttonTextContainer}>
-              <Text style={styles.buttonText}>{number.name}</Text>
-            </View>
-            <View style={styles.buttonNumberContainer}>
-              <Text style={styles.buttonText}>{number.phone}</Text>
-            </View>
-          </TouchableOpacity>
-        ))}
-      </View>
-    );
-  };
+  const renderEmergencyNumbers = () => (
+    <View style={styles.contactList}>
+      <TouchableOpacity style={styles.contactButton}>
+        <View style={styles.buttonTextContainer}>
+          <Text style={styles.buttonText}>SOS Suicide Phénix</Text>
+        </View>
+        <View style={styles.buttonNumberContainer}>
+          <Text style={styles.buttonText}>01 45 39 40 00</Text>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.contactButton}>
+        <View style={styles.buttonTextContainer}>
+          <Text style={styles.buttonText}>SOS Amitié</Text>
+        </View>
+        <View style={styles.buttonNumberContainer}>
+          <Text style={styles.buttonText}>09 72 39 40 50</Text>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.contactButton}>
+        <View style={styles.buttonTextContainer}>
+          <Text style={styles.buttonText}>Fil Santé Jeunes</Text>
+        </View>
+        <View style={styles.buttonNumberContainer}>
+          <Text style={styles.buttonText}>0 800 235 236</Text>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.contactButton}>
+        <View style={styles.buttonTextContainer}>
+          <Text style={styles.buttonText}>SAMU</Text>
+        </View>
+        <View style={styles.buttonNumberContainer}>
+          <Text style={styles.buttonText}>15</Text>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.contactButton}>
+        <View style={styles.buttonTextContainer}>
+          <Text style={styles.buttonText}>Numéro européen d'urgence</Text>
+        </View>
+        <View style={styles.buttonNumberContainer}>
+          <Text style={styles.buttonText}>112</Text>
+        </View>
+      </TouchableOpacity>
+    </View>
+  );
 
   return (
     <View style={styles.container}>

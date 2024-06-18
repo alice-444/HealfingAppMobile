@@ -29,7 +29,7 @@ const Home = ({ navigation }) => {
         onPress={() => navigation.navigate("Profile")}
         style={styles.header}
       >
-        <Text style={styles.headerText}>Nom et prénom</Text>
+        <Text style={styles.headerText}>Bienvene Esther !</Text>
         <TouchableOpacity style={styles.notificationIcon}>
           <Ionicons name="notifications-outline" size={24} color="#fff" />
         </TouchableOpacity>
@@ -42,7 +42,7 @@ const Home = ({ navigation }) => {
       >
         <View style={styles.profileContainer}>
           <View style={styles.profileDetails}>
-            <Text style={styles.levelText}>Niveau 05</Text>
+            <Text style={styles.levelText}>Niveau 01</Text>
             <View style={styles.xpContainer}>
               <Text style={styles.xpText}>XP</Text>
               <View style={styles.xpBar}>
@@ -58,11 +58,6 @@ const Home = ({ navigation }) => {
           </TouchableOpacity>
         </View>
 
-        <View style={styles.separatorContainer}>
-          <View style={styles.separatorLine} />
-          <Text style={styles.sectionTitle}>Phrase du jour</Text>
-          <View style={styles.separatorLine} />
-        </View>
 
         <TouchableOpacity
           onPress={() => navigation.navigate("DailyMissions")}
@@ -75,7 +70,7 @@ const Home = ({ navigation }) => {
             style={styles.gradient}
           >
             <Text style={styles.dailyQuoteText}>Mission du jour</Text>
-            <Text style={styles.dailyQuoteXP}>nb XP</Text>
+            <Text style={styles.dailyQuoteXP}>20 XP</Text>
           </LinearGradient>
         </TouchableOpacity>
 
@@ -179,7 +174,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   xpFill: {
-    width: "50%",
+    width: "0%",
     height: "100%",
     backgroundColor: "#120B2D",
     borderRadius: 5,

@@ -55,7 +55,7 @@ const SignUpInfosScreen = ({ route }) => {
           const err = await response.json();
           throw new Error(
             "Une erreur s'est produite lors de la création du compte: " +
-              (err.message || response.statusText)
+            (err.message || response.statusText)
           );
         }
       })
