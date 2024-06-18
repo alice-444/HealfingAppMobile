@@ -5,11 +5,11 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Home from "./screens/homeScreen.jsx";
 import News from "./screens/newsScreen.jsx";
 import Error404 from "./screens/error404.jsx";
+import Contact from "./screens/contactScreen.jsx";
+import Profile from "./screens/profileScreen.jsx";
 import Login from "./screens/auth/loginScreen.jsx";
 import Diary from "./screens/diary/diaryScreen.jsx";
 import SignUp from "./screens/auth/signUpScreen.jsx";
-import Contact from "./screens/contactScreen.jsx";
-import Profile from "./screens/profileScreen.jsx";
 import DailyMissions from "./screens/dailyMissions.jsx";
 import Chargement from "./screens/chargementScreen.jsx";
 import ReportBug from "./screens/settings/reportBug.jsx";
@@ -38,7 +38,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="SignUpInfos">
+        <Stack.Navigator initialRouteName="Home">
           <Stack.Screen
             name="SignUp"
             component={SignUp}
