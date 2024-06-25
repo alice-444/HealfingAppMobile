@@ -14,13 +14,11 @@ const Profil = ({ navigation }) => {
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerText}>Nom et prénom</Text>
-        <TouchableOpacity style={styles.notificationIcon}>
-          <Ionicons
-            testID="notification-icon"
-            name="notifications-outline"
-            size={24}
-            color="#fff"
-          />
+        <TouchableOpacity
+          style={styles.notificationIcon}
+          testID="notification-icon"
+        >
+          <Ionicons name="notifications-outline" size={24} color="#fff" />
         </TouchableOpacity>
       </View>
 
@@ -64,8 +62,8 @@ const Profil = ({ navigation }) => {
         </View>
       </ScrollView>
 
-      <View style={styles.footer}>
-        <Menu navigation={navigation} testID="menu-footer" />
+      <View style={styles.footer} testID="menu-footer">
+        <Menu navigation={navigation} />
       </View>
     </View>
   );
