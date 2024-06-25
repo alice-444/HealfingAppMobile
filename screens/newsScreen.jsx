@@ -27,7 +27,8 @@ const articles = [
     image: require("../assets/meditation.png"),
   },
   {
-    title: "Célébration de la diversité et de l'inclusion dans la santé mentale",
+    title:
+      "Célébration de la diversité et de l'inclusion dans la santé mentale",
     text: "Notre application est fière de célébrer la diversité et l'inclusion dans le domaine de la santé mentale. Nous reconnaissons l'importance de respecter et de valoriser les différentes ...",
     image: require("../assets/meditation.png"),
   },
@@ -38,10 +39,20 @@ const News = ({ navigation }) => {
     <View style={styles.container}>
       <View style={styles.header}>
         <TouchableOpacity onPress={() => navigation.goBack("Home")}>
-          <Ionicons name="arrow-back-outline" size={30} color="#fff" />
+          <Ionicons
+            name="arrow-back-outline"
+            testID="back-button"
+            size={30}
+            color="#fff"
+          />
         </TouchableOpacity>
         <TouchableOpacity>
-          <Ionicons name="menu-outline" size={30} color="#fff" />
+          <Ionicons
+            name="menu-outline"
+            testID="menu-button"
+            size={30}
+            color="#fff"
+          />
         </TouchableOpacity>
       </View>
 
@@ -58,9 +69,7 @@ const News = ({ navigation }) => {
               </View>
               <Image source={article.image} style={styles.entryImage} />
             </View>
-            {index < articles.length - 1 && (
-              <View style={styles.separator} />
-            )}
+            {index < articles.length - 1 && <View style={styles.separator} />}
           </View>
         ))}
       </ScrollView>

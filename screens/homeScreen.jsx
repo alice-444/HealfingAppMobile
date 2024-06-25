@@ -29,13 +29,14 @@ const Home = ({ navigation }) => {
         onPress={() => navigation.navigate("Profile")}
         style={styles.header}
       >
-        <Text style={styles.headerText}>Bienvene Esther !</Text>
+        <Text style={styles.headerText}>Bienvenue Esther !</Text>
         <TouchableOpacity style={styles.notificationIcon}>
           <Ionicons name="notifications-outline" size={24} color="#fff" />
         </TouchableOpacity>
       </TouchableOpacity>
 
       <Animated.ScrollView
+        testID="scroll-view"
         contentContainerStyle={styles.content}
         onScroll={handleScroll}
         scrollEventThrottle={16}
@@ -57,7 +58,6 @@ const Home = ({ navigation }) => {
             <Ionicons name="settings-outline" size={24} color="#000" />
           </TouchableOpacity>
         </View>
-
 
         <TouchableOpacity
           onPress={() => navigation.navigate("DailyMissions")}

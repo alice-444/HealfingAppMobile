@@ -5,19 +5,11 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
-  ScrollView,
 } from "react-native";
+import { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import { useState, useRef, useLayoutEffect } from "react";
-
-function Header() {
-  return (
-    <View style={styles.header}>
-      <Text style={styles.headerText}>Inscription</Text>
-    </View>
-  );
-}
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const SignUpScreen = () => {
   const [email, setEmail] = useState("");
@@ -75,19 +67,6 @@ const SignUpScreen = () => {
     }
     return true;
   };
-
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerStyle: {
-        backgroundColor: "#3F317E",
-      },
-      headerTintColor: "#fff",
-      headerTitleStyle: {
-        marginLeft: 20,
-      },
-      headerTitle: "Inscription",
-    });
-  }, [navigation]);
 
   return (
     <View style={styles.background}>

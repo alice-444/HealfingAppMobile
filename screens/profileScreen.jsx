@@ -4,7 +4,6 @@ import {
   StyleSheet,
   TouchableOpacity,
   ScrollView,
-  Image,
 } from "react-native";
 import Menu from "../components/Menu.jsx";
 import { Ionicons } from "@expo/vector-icons";
@@ -16,7 +15,12 @@ const Profil = ({ navigation }) => {
       <View style={styles.header}>
         <Text style={styles.headerText}>Nom et prénom</Text>
         <TouchableOpacity style={styles.notificationIcon}>
-          <Ionicons name="notifications-outline" size={24} color="#fff" />
+          <Ionicons
+            testID="notification-icon"
+            name="notifications-outline"
+            size={24}
+            color="#fff"
+          />
         </TouchableOpacity>
       </View>
 
@@ -61,7 +65,7 @@ const Profil = ({ navigation }) => {
       </ScrollView>
 
       <View style={styles.footer}>
-        <Menu navigation={navigation} />
+        <Menu navigation={navigation} testID="menu-footer" />
       </View>
     </View>
   );

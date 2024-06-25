@@ -14,7 +14,10 @@ const Diary = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack("Diary")}>
+        <TouchableOpacity
+          testID="back-button"
+          onPress={() => navigation.goBack("Diary")}
+        >
           <Ionicons name="arrow-back-outline" size={30} color="#fff" />
         </TouchableOpacity>
         <TouchableOpacity>
@@ -62,6 +65,7 @@ const Diary = ({ navigation }) => {
 
       <View style={styles.fabContainer}>
         <TouchableOpacity
+          testID="fab-button"
           style={styles.fab}
           onPress={() => navigation.navigate("AddDataDiary")}
         >

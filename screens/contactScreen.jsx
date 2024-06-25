@@ -81,7 +81,10 @@ const Contact = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack("homeScreen")}>
+        <TouchableOpacity
+          testID="back-button"
+          onPress={() => navigation.goBack("homeScreen")}
+        >
           <Ionicons name="arrow-back-outline" size={30} color="#fff" />
         </TouchableOpacity>
         <TouchableOpacity>
@@ -95,14 +98,18 @@ const Contact = ({ navigation }) => {
           style={styles.iconContainer}
         >
           <Ionicons name="medkit-outline" size={30} color="#fff" />
-          <Text style={styles.headerText}>Contact Pro</Text>
+          <Text testID="contact-pro-text" style={styles.headerText}>
+            Contact Pro
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => setActiveSection("emergencyNumbers")}
           style={styles.iconContainer}
         >
           <Ionicons name="apps-outline" size={30} color="#fff" />
-          <Text style={styles.headerText}>Numéros D'urgence</Text>
+          <Text testID="emergency-numbers-text" style={styles.headerText}>
+            Numéros D'urgence
+          </Text>
         </TouchableOpacity>
       </View>
 

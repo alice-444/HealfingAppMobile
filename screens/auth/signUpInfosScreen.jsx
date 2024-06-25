@@ -32,8 +32,8 @@ const SignUpInfosScreen = ({ route }) => {
       return;
     }
 
-    fetch(`http://localhost:3002/users`, {
-      method: 'POST',
+    fetch(`healfingapp-production.up.railway.app/users`, {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
@@ -55,7 +55,7 @@ const SignUpInfosScreen = ({ route }) => {
           const err = await response.json();
           throw new Error(
             "Une erreur s'est produite lors de la création du compte: " +
-            (err.message || response.statusText)
+              (err.message || response.statusText)
           );
         }
       })
@@ -122,9 +122,7 @@ const SignUpInfosScreen = ({ route }) => {
           <Text style={styles.buttonText}>Créer un Compte</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-          <Text style={styles.linkText}>
-            Déjà un compte ? Connectez-vous
-          </Text>
+          <Text style={styles.linkText}>Déjà un compte ? Connectez-vous</Text>
         </TouchableOpacity>
       </View>
     </View>
